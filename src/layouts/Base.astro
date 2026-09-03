@@ -1,0 +1,58 @@
+---
+import '../styles/global.css'
+import { site } from '../data/site'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const { title, description = site.description } = Astro.props
+const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`
+const canonical = new URL(Astro.url.pathname, Astro.site)
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#16191c" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: site.name,
+        url: 'https://newnepaludyog.com.np',
+        telephone: site.contact.phone,
+        email: site.contact.email,
+        address: { '@type': 'PostalAddress', streetAddress: site.contact.address },
+        foundingDate: '1985',
+        sameAs: [site.contact.facebook],
+      })}
+    />
+  </head>
+  <body class="bg-ground font-sans text-ink antialiased">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,50 @@
+---
+import Container from './Container.astro'
+import type { ChairSection } from '../data/chairs'
+
+interface Props {
+  section: ChairSection
+  tone?: 'ground' | 'raised'
+}
+
+const { section, tone = 'ground' } = Astro.props
+const bg = tone === 'raised' ? 'bg-surface-raised' : 'bg-ground'
+---
+
+<section id={section.id} class:list={['border-t border-hairline py-16 md:py-24', bg]}>
+  <Container>
+    <div class="mb-10 max-w-[60ch]">
+      <h2
+        class="font-display text-3xl leading-tight font-semibold tracking-tight text-ink md:text-4xl"
+      >
+        {section.heading}
+      </h2>
+      <p class="mt-3 leading-relaxed text-ink-muted">{section.intro}</p>
+    </div>
+
+    <ul class="grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        section.chairs.map((chair) => (
+          <li class="overflow-hidden rounded-card border border-hairline bg-surface">
+            <div class="aspect-[3/4] overflow-hidden bg-surface-raised">
+              <img
+                src={chair.image}
+                alt={chair.alt}
+                width="800"
+                height="1067"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover"
+              />
+            </div>
+            <div class="p-5">
+              <h3 class="font-display text-lg leading-snug font-semibold tracking-tight text-ink">
+                {chair.name}
+              </h3>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</section>

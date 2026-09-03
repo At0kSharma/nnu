@@ -1,0 +1,37 @@
+---
+import Container from './Container.astro'
+import { site, telLink } from '../data/site'
+import { sections } from '../data/chairs'
+---
+
+<header class="sticky top-0 z-50 border-b border-hairline bg-ground/90 backdrop-blur">
+  <Container>
+    <div class="flex min-h-14 items-center gap-6 md:min-h-16">
+      <a
+        href="/"
+        class="mr-auto flex items-center gap-2.5 font-display text-base font-semibold tracking-tight whitespace-nowrap text-ink"
+      >
+        <img src="/icon-192.png" alt="" width="26" height="26" class="size-6.5 rounded-sm" />
+        {site.name}
+      </a>
+
+      <nav class="hidden items-center gap-7 text-sm text-ink-muted sm:flex" aria-label="Primary">
+        {
+          sections.map((s) => (
+            <a href={`#${s.id}`} class="transition-colors hover:text-ink">
+              {s.heading}
+            </a>
+          ))
+        }
+        <a href="#contact" class="transition-colors hover:text-ink">Contact</a>
+      </nav>
+
+      <a
+        href={telLink}
+        class="rounded-card bg-ink px-4 py-2 text-sm font-medium text-ground transition-opacity hover:opacity-90"
+      >
+        Call us
+      </a>
+    </div>
+  </Container>
+</header>

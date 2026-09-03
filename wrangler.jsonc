@@ -1,0 +1,7 @@
+{
+  // Serves dist/ straight from a Worker's static assets binding — no server
+  // code, so this and `wrangler pages deploy dist` are interchangeable.
+  "name": "nnu",
+  "compatibility_date": "2026-01-01",
+  "assets": { "directory": "./dist" }
+}

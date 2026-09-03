@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens, carried over from the main site so the two look like one
+ * business. Trimmed to what a static brochure needs: the Lights Down palette,
+ * the theatre overrides and the mobile tab-bar spacing are all gone, since
+ * there is no toggle and no fixed bar here.
+ */
+@theme {
+  --color-ground: #f4f4f2;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ebebe8;
+  --color-ink: #16191c;
+  --color-ink-muted: #5c646b;
+  --color-hairline: #d5d6d2;
+  --color-hairline-strong: #b4b6b1;
+  --color-accent: #1f5c7a;
+  --color-accent-bright: #2b7ba1;
+
+  /* The always-dark chrome band (footer, contact panel). */
+  --color-band: #16191c;
+  --color-band-ink: #f4f4f2;
+
+  --font-sans: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: Archivo, Inter, system-ui, sans-serif;
+
+  --radius-card: 4px;
+  --container-site: 1200px;
+  --spacing-nav-h: 4rem;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--spacing-nav-h) + 12px);
+  }
+
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

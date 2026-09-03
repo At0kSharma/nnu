@@ -1,0 +1,52 @@
+---
+import Container from './Container.astro'
+import { site } from '../data/site'
+---
+
+<section class="border-b border-hairline bg-ground">
+  <Container>
+    <div class="grid items-center gap-10 py-14 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+      <div>
+        <span class="mb-4 flex items-center gap-3 text-sm text-ink-muted">
+          <span aria-hidden="true" class="h-px w-8 bg-hairline-strong"></span>
+          {site.hero.eyebrow}
+        </span>
+        <h1
+          class="font-display text-4xl leading-[1.05] font-semibold tracking-tight text-balance text-ink md:text-6xl"
+        >
+          {site.name}
+        </h1>
+        <p class="mt-4 max-w-[46ch] text-lg text-ink-muted">{site.tagline}</p>
+        <p class="mt-3 max-w-[52ch] leading-relaxed text-ink-muted">{site.description}</p>
+
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a
+            href="#cinema"
+            class="rounded-card border border-ink bg-ink px-5 py-2.5 text-sm font-medium text-ground transition-colors hover:bg-transparent hover:text-ink"
+          >
+            {site.hero.ctaSeating}
+          </a>
+          <a
+            href="#contact"
+            class="rounded-card border border-hairline-strong px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink"
+          >
+            {site.hero.ctaContact}
+          </a>
+        </div>
+      </div>
+
+      {/* A transparent cutout, so no frame or crop: the chair sits directly on
+          the page ground, exactly as it does on the main site. */}
+      <div class="mx-auto w-full max-w-md">
+        <img
+          src="/img/hero-chair.webp"
+          alt={site.hero.imageAlt}
+          width="768"
+          height="1024"
+          fetchpriority="high"
+          class="h-auto w-full object-contain"
+        />
+      </div>
+    </div>
+  </Container>
+</section>
